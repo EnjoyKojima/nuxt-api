@@ -6,6 +6,10 @@ export default defineNuxtConfig({
     dirs: ["schemas/**"],
   },
 
+  build: {
+    transpile: ['trpc-nuxt']
+  },
+
   shadcn: {
     /**
      * Prefix for all the imported component

@@ -7,6 +7,7 @@ import { toast } from '@/components/ui/toast'
 
 const formSchema = toTypedSchema(z.object({
   username: z.string().min(2).max(50),
+  password: z.string().min(8).max(50),
 }))
 
 const { handleSubmit } = useForm({
@@ -30,10 +31,22 @@ const onSubmit = handleSubmit((values) => {
         <FormItem>
           <FormLabel>Username</FormLabel>
           <FormControl>
-            <Input type="text" placeholder="shadcn" v-bind="componentField" />
+            <Input type="text" placeholder="good name" v-bind="componentField" />
           </FormControl>
           <FormDescription>
             This is your public display name.
+          </FormDescription>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <FormField v-slot="{ componentField }" name="password">
+        <FormItem>
+          <FormLabel>Password</FormLabel>
+          <FormControl>
+            <Input type="password" placeholder="super secure password" v-bind="componentField" />
+          </FormControl>
+          <FormDescription>
+            This is your private password.
           </FormDescription>
           <FormMessage />
         </FormItem>

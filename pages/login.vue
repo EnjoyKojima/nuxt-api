@@ -2,9 +2,10 @@
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
 import { toast } from '@/components/ui/toast'
+import { auth } from '@/schemas'
 
 const { handleSubmit } = useForm({
-  validationSchema: toTypedSchema(authInputSchema),
+  validationSchema: toTypedSchema(auth.input),
 })
 
 const onSubmit = handleSubmit((values) => {

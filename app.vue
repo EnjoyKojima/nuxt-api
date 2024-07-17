@@ -13,6 +13,10 @@ const onSubmit = handleSubmit((values) => {
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
   })
 })
+
+const { $client } = useNuxtApp()
+
+const { data: hello } = await $client.hello.useQuery({ text: 'unko' })
 </script>
 
 <template>
@@ -48,5 +52,9 @@ const onSubmit = handleSubmit((values) => {
         Submit
       </Button>
     </form>
+
+    <div>
+      <p>{{ hello?.greeting }}</p>
+    </div>
   </div>
 </template>

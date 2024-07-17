@@ -1,17 +1,10 @@
 <script setup lang="ts">
-import { h } from 'vue'
 import { useForm } from 'vee-validate'
 import { toTypedSchema } from '@vee-validate/zod'
-import * as z from 'zod'
 import { toast } from '@/components/ui/toast'
 
-const formSchema = toTypedSchema(z.object({
-  username: z.string().min(2).max(50),
-  password: z.string().min(8).max(50),
-}))
-
 const { handleSubmit } = useForm({
-  validationSchema: formSchema,
+  validationSchema: toTypedSchema(authInputSchema),
 })
 
 const onSubmit = handleSubmit((values) => {

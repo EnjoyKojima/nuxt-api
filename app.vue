@@ -16,7 +16,7 @@ const onSubmit = handleSubmit((values) => {
 
 const { $client } = useNuxtApp()
 
-const { data: hello } = await $client.hello.useQuery({ text: 'unko' })
+const { data: todos } = await $client.user.getUsers.useQuery()
 </script>
 
 <template>
@@ -54,7 +54,7 @@ const { data: hello } = await $client.hello.useQuery({ text: 'unko' })
     </form>
 
     <div>
-      <p>{{ hello?.greeting }}</p>
+      <p> {{ todos }} </p>
     </div>
   </div>
 </template>

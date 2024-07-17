@@ -14,5 +14,30 @@ export default defineNuxtConfig({
     componentDir: './components/ui'
   },
 
+  vite: {
+    server: {
+      hmr: {
+        port: 5173,
+        clientPort: 443,
+        protocol: 'wss',
+        path: 'hmr/',
+      },
+    },
+  },
+
+  hooks: {
+    'vite:extendConfig'(viteInlineConfig, env) {
+      viteInlineConfig.server = {
+        ...viteInlineConfig.server,
+        hmr: {
+          port: 5173,
+          clientPort: 443,
+          protocol: 'wss',
+          path: 'hmr/',
+        },
+      }
+    },
+  },
+
   compatibilityDate: '2024-07-17'
 })

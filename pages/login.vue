@@ -22,59 +22,83 @@ const onSubmit = handleSubmit(async (values) => {
       description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-rose-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
     })
   } else {
-    toast({
-      title: 'You submitted the following values:',
-      description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
-    })
   }
 })
 </script>
 
 <template>
-  <form class="w-2/3 space-y-6" @submit="onSubmit">
-    <!-- Username -->
-    <FormField v-slot="{ componentField }" name="username">
-      <FormItem>
-        <FormLabel>Username</FormLabel>
-        <FormControl>
-          <Input type="text" placeholder="good name" v-bind="componentField" />
-        </FormControl>
-        <FormDescription>
-          This is your public display name.
-        </FormDescription>
-        <FormMessage />
-      </FormItem>
-    </FormField>
-    <!-- Password -->
-    <FormField v-slot="{ componentField }" name="password">
-      <FormItem>
-        <FormLabel>Password</FormLabel>
-        <FormControl>
-          <Input type="password" placeholder="super secure password" v-bind="componentField" />
-        </FormControl>
-        <FormDescription>
-          This is your private password.
-        </FormDescription>
-        <FormMessage />
-      </FormItem>
-    </FormField>
-    <!-- Submit -->
-    <Button type="submit">
-      Submit
-    </Button>
-    <table>
-      <tr>
-        <th>Status</th>
-        <td>{{ status }}</td>
-      </tr>
-      <tr>
-        <th>Error</th>
-        <td>{{ error }}</td>
-      </tr>
-      <tr>
-        <th>Data</th>
-        <td>{{ data }}</td>
-      </tr>
-    </table>
-  </form>
+  <div>
+    <form class="w-2/3 space-y-6 mb-10" @submit="onSubmit">
+      <!-- Username -->
+      <FormField v-slot="{ componentField }" name="username">
+        <FormItem>
+          <FormLabel>Username</FormLabel>
+          <FormControl>
+            <Input type="text" placeholder="good name" v-bind="componentField" />
+          </FormControl>
+          <FormDescription>
+            This is your public display name.
+          </FormDescription>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <!-- Password -->
+      <FormField v-slot="{ componentField }" name="password">
+        <FormItem>
+          <FormLabel>Password</FormLabel>
+          <FormControl>
+            <Input type="password" placeholder="super secure password" v-bind="componentField" />
+          </FormControl>
+          <FormDescription>
+            This is your private password.
+          </FormDescription>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <!-- Submit -->
+      <Button type="submit">
+        Submit
+      </Button>
+    </form>
+
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead class="w-[100px]">
+            Ref
+          </TableHead>
+          <TableHead>Value</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        <!-- R1 -->
+        <TableRow>
+          <TableCell class="font-medium">
+            status
+          </TableCell>
+          <TableCell>
+            {{ status }}
+          </TableCell>
+        </TableRow>
+        <!-- R2 -->
+        <TableRow>
+          <TableCell class="font-medium">
+            data
+          </TableCell>
+          <TableCell>
+            {{ data }}
+          </TableCell>
+        </TableRow>
+        <!-- R3 -->
+        <TableRow>
+          <TableCell class="font-medium">
+            error
+          </TableCell>
+          <TableCell>
+            {{ error }}
+          </TableCell>
+        </TableRow>
+      </TableBody>
+    </Table>
+  </div>
 </template>

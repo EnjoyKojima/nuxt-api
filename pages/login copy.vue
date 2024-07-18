@@ -11,22 +11,15 @@ const { handleSubmit } = useForm({
 const { $client } = useNuxtApp()
 const router = useRouter()
 
-const { mutate, error, data, status } = $client.auth.signJWT.useMutation()
+const { mutate, data, error } = $client.auth.signJWT.useMutation()
 
 const onSubmit = handleSubmit(async (values) => {
   const token = await mutate(values)
-  console.log(token)
-  if (error.value) {
-    toast({
-      title: 'Error',
-      description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-rose-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
-    })
-  } else {
-    toast({
-      title: 'You submitted the following values:',
-      description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
-    })
-  }
+  console.log(token, error.value)
+  toast({
+    title: 'You submitted the following values:',
+    description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
+  })
 })
 </script>
 
@@ -62,19 +55,8 @@ const onSubmit = handleSubmit(async (values) => {
     <Button type="submit">
       Submit
     </Button>
-    <table>
-      <tr>
-        <th>Status</th>
-        <td>{{ status }}</td>
-      </tr>
-      <tr>
-        <th>Error</th>
-        <td>{{ error }}</td>
-      </tr>
-      <tr>
-        <th>Data</th>
-        <td>{{ data }}</td>
-      </tr>
-    </table>
+    <div>
+      {{ error }}
+    </div>
   </form>
 </template>

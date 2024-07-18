@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import jwt from "jsonwebtoken";
+import { TRPCError } from '@trpc/server';
 import { publicProcedure, router } from '../trpc'
 
 export const authRouter = router({
@@ -9,7 +10,13 @@ export const authRouter = router({
             password: z.string()
         }))
         .mutation(async ({ ctx, input }) => {
-            console.log({ctx,input})
+            console.log({ ctx, input })
+            if (input.username !== 'kojima' || input.password !== 'superman') {
+                throw new TRPCError({
+                    code: 'UNAUTHORIZED',
+                    message: 'Invalid credentials',
+                })
+            }
             const runtimeConfig = useRuntimeConfig()
             const token = jwt.sign({ input }, runtimeConfig.authSecret, {
                 expiresIn: '1h',

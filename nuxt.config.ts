@@ -4,6 +4,10 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
+  runtimeConfig: {
+    authSecret: process.env.AUTH_SECRET,
+  },
+
   modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
 
   build: {

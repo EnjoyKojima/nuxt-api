@@ -24,3 +24,20 @@ https://trpc-nuxt.vercel.app/get-started/usage/recommended
 │   ├── client.ts  # <-- tRPC client plugin
 └── [..]
 ```
+
+### エラーハンドリング
+ここにあるコードを使う。
+https://trpc.io/docs/server/error-handling
+
+```ts
+throw new TRPCError({
+    code: 'UNAUTHORIZED',
+    message: 'Invalid username or password'
+})
+```
+
+## JWT
+
+```bash
+openssl rand 256 | base64
+```

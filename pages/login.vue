@@ -8,7 +8,12 @@ const { handleSubmit } = useForm({
   validationSchema: toTypedSchema(auth.input),
 })
 
-const onSubmit = handleSubmit((values) => {
+const { $client } = useNuxtApp()
+const router = useRouter()
+
+const onSubmit = handleSubmit(async (values) => {
+  const { data } = await $client.auth.sign.useQuery(values)
+  console.log(data)
   toast({
     title: 'You submitted the following values:',
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),
@@ -23,7 +28,7 @@ const onSubmit = handleSubmit((values) => {
       <FormItem>
         <FormLabel>Username</FormLabel>
         <FormControl>
-        <Input type="text" placeholder="good name" v-bind="componentField" />
+          <Input type="text" placeholder="good name" v-bind="componentField" />
         </FormControl>
         <FormDescription>
           This is your public display name.
@@ -36,7 +41,7 @@ const onSubmit = handleSubmit((values) => {
       <FormItem>
         <FormLabel>Password</FormLabel>
         <FormControl>
-        <Input type="password" placeholder="super secure password" v-bind="componentField" />
+          <Input type="password" placeholder="super secure password" v-bind="componentField" />
         </FormControl>
         <FormDescription>
           This is your private password.

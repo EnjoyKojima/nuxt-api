@@ -31,37 +31,39 @@ const onSubmit = handleSubmit(async (values) => {
 </script>
 
 <template>
-  <form class="w-2/3 space-y-6" @submit="onSubmit">
-    <!-- Username -->
-    <FormField v-slot="{ componentField }" name="username">
-      <FormItem>
-        <FormLabel>Username</FormLabel>
-        <FormControl>
-          <Input type="text" placeholder="good name" v-bind="componentField" />
-        </FormControl>
-        <FormDescription>
-          This is your public display name.
-        </FormDescription>
-        <FormMessage />
-      </FormItem>
-    </FormField>
-    <!-- Password -->
-    <FormField v-slot="{ componentField }" name="password">
-      <FormItem>
-        <FormLabel>Password</FormLabel>
-        <FormControl>
-          <Input type="password" placeholder="super secure password" v-bind="componentField" />
-        </FormControl>
-        <FormDescription>
-          This is your private password.
-        </FormDescription>
-        <FormMessage />
-      </FormItem>
-    </FormField>
-    <!-- Submit -->
-    <Button type="submit">
-      Submit
-    </Button>
+  <div>
+    <form class="w-2/3 space-y-6" @submit="onSubmit">
+      <!-- Username -->
+      <FormField v-slot="{ componentField }" name="username">
+        <FormItem>
+          <FormLabel>Username</FormLabel>
+          <FormControl>
+            <Input type="text" placeholder="good name" v-bind="componentField" />
+          </FormControl>
+          <FormDescription>
+            This is your public display name.
+          </FormDescription>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <!-- Password -->
+      <FormField v-slot="{ componentField }" name="password">
+        <FormItem>
+          <FormLabel>Password</FormLabel>
+          <FormControl>
+            <Input type="password" placeholder="super secure password" v-bind="componentField" />
+          </FormControl>
+          <FormDescription>
+            This is your private password.
+          </FormDescription>
+          <FormMessage />
+        </FormItem>
+      </FormField>
+      <!-- Submit -->
+      <Button type="submit">
+        Submit
+      </Button>
+    </form>
     <table>
       <tr>
         <th>Status</th>
@@ -76,5 +78,5 @@ const onSubmit = handleSubmit(async (values) => {
         <td>{{ data }}</td>
       </tr>
     </table>
-  </form>
+  </div>
 </template>

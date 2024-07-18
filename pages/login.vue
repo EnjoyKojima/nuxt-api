@@ -12,8 +12,8 @@ const { $client } = useNuxtApp()
 const router = useRouter()
 
 const onSubmit = handleSubmit(async (values) => {
-  const { data } = await $client.auth.sign.useQuery(values)
-  console.log(data)
+  const { token } = await $client.auth.signJWT.mutate(values)
+  console.log(token)
   toast({
     title: 'You submitted the following values:',
     description: h('pre', { class: 'mt-2 w-[340px] rounded-md bg-slate-950 p-4' }, h('code', { class: 'text-white' }, JSON.stringify(values, null, 2))),

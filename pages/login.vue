@@ -24,6 +24,9 @@ const onSubmit = handleSubmit(async (values) => {
   } else {
   }
 })
+
+const prisma = usePrismaClient()
+const user = await prisma.user.findFirst()
 </script>
 
 <template>
@@ -100,5 +103,7 @@ const onSubmit = handleSubmit(async (values) => {
         </TableRow>
       </TableBody>
     </Table>
+
+    {{ user }}
   </div>
 </template>

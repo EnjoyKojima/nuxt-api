@@ -8,7 +8,7 @@ export default defineNuxtConfig({
     authSecret: process.env.AUTH_SECRET,
   },
 
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt', "@prisma/nuxt"],
 
   build: {
     transpile: ['trpc-nuxt']
@@ -33,6 +33,11 @@ export default defineNuxtConfig({
         clientPort: 443,
         protocol: 'wss',
         path: 'hmr/',
+      },
+    },
+    build: {
+      rollupOptions: {
+        external: ['#imports'], // ここを追加
       },
     },
   },

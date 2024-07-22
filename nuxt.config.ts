@@ -4,11 +4,11 @@ export default defineNuxtConfig({
     enabled: true,
   },
 
-  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
-
-  imports: {
-    dirs: ["schemas/**"],
+  runtimeConfig: {
+    authSecret: process.env.AUTH_SECRET,
   },
+
+  modules: ['@nuxtjs/tailwindcss', 'shadcn-nuxt'],
 
   build: {
     transpile: ['trpc-nuxt']

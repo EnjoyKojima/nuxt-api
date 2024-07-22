@@ -34,12 +34,7 @@ export default defineNuxtConfig({
         protocol: 'wss',
         path: 'hmr/',
       },
-    },
-    build: {
-      rollupOptions: {
-        external: ['#imports'], // ここを追加
-      },
-    },
+    }
   },
 
   hooks: {
